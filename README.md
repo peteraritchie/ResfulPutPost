@@ -1,3 +1,3 @@
 # ResfulPutPost
 
-A reference implementation that implements standard GET and POST implementations for resources and asynchronous requests.
+A reference implementation that implements standard PUT, POST, and GET implementations for resources and asynchronous requests.
