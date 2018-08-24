@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
 
 		/// <summary>
 		/// Get zero or one requests
-		/// <code>GET api/creqteproductrequests/5</code>
+		/// <code>GET api/createproductrequests/5</code>
 		/// <remarks>named route: "GetCreateProductRequest"</remarks>
 		/// </summary>
 		/// <param name="id">id of the product to get</param>
