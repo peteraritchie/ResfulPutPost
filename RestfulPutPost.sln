@@ -3,20 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{61A2DDEC-22BF-4FC9-A2F6-F514B32B730B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{61A2DDEC-22BF-4FC9-A2F6-F514B32B730B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A46A8030-4727-4C57-9446-0D2669BB4AC2}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		CustomDictionary.xml = CustomDictionary.xml
+		RestfulPutPost.sln.vsspell = RestfulPutPost.sln.vsspell
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{4CE72AD5-E820-4597-90E6-E929CC62A080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4CE72AD5-E820-4597-90E6-E929CC62A080}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9723AF05-82CC-473F-97AE-37E2EA1E74C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{9723AF05-82CC-473F-97AE-37E2EA1E74C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Abstractions", "Domain.Abstractions\Domain.Abstractions.csproj", "{D912040E-005E-422B-9A0E-AF594ECF1F94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Abstractions", "Domain.Abstractions\Domain.Abstractions.csproj", "{D912040E-005E-422B-9A0E-AF594ECF1F94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Primitivies", "Domain.Primitivies\Domain.Primitivies.csproj", "{A5ABD8AD-261B-4791-BBBC-C390B344F1E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Primitivies", "Domain.Primitivies\Domain.Primitivies.csproj", "{A5ABD8AD-261B-4791-BBBC-C390B344F1E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

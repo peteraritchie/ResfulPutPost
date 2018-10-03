@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+#if !PUT_CREATE_SUPPORTED
+#endif
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Moq;
@@ -8,41 +10,21 @@ using WebAPI.Abstractions;
 using WebAPI.Controllers;
 using WebAPI.Models;
 using Xunit;
-
+//https://stackoverflow.com/questions/35363358/computing-sha1-with-asp-net-core
 namespace Tests
 {
-	public class RequestControllerTests
+	public class RequestQueueControllerTests
 	{
 		[Fact/*[RFC2616.10.4.1]*/]
 		public void PostRequestWithNullRequestResultsInBadRequest()
 		{
 			var mock = new Mock<ICreateProductRequestJournal>();
 			mock.Setup(m => m.Book(It.IsAny<CreateProductRequest>())).Returns(new Guid("12345678901234567890123456789012"));
-			var controller = new CreateProductRequestsController(mock.Object);
+			var controller = new CreateProductRequestQueueController(mock.Object);
 
-			var result = controller.Post(null);
+			var result = controller.Get(null);
 
 			var acceptedResult = Assert.IsType<BadRequestObjectResult>(result);
-		}
-
-		[Fact/*ALLAMARAJU.1.10*/]
-		public void PostRequestResultsInAcceptedWithValidGuid()
-		{
-			var mock = new Mock<ICreateProductRequestJournal>();
-			Product product;
-			mock
-				.Setup(m => m.Book(It.IsAny<CreateProductRequest>()))
-				.Callback((CreateProductRequest m) => product = m.Product)
-				.Returns(new Guid("12345678901234567890123456789012"));
-
-			var controller = new CreateProductRequestsController(mock.Object);
-
-			var result = controller.Post(new CreateProductRequest {Product = new Product {Name = "the name", Price = "66.66"}});
-
-			var acceptedResult = Assert.IsType<AcceptedAtActionResult>(result);
-			Assert.True(acceptedResult.RouteValues.ContainsKey("id"));
-			Guid guid = Assert.IsType<Guid>(acceptedResult.RouteValues["id"]);
-			Assert.NotEqual(Guid.Empty, guid);
 		}
 
 		[Fact/*[RFC2616.10.4.5]*/]
@@ -115,11 +97,11 @@ namespace Tests
 			var controller = new CreateProductRequestQueueController(mock.Object)
 			{
 				Url = mockUrlHelper.Object,
-				ControllerContext = new ControllerContext {HttpContext = new DefaultHttpContext()}
+				ControllerContext = new ControllerContext { HttpContext = new DefaultHttpContext() }
 			};
 			var response = controller.Get(new Guid("12345678901234567890123456789012").ToString());
 			var result = Assert.IsType<ObjectResult>(response);
-			Assert.Equal((int) HttpStatusCode.SeeOther, result.StatusCode);
+			Assert.Equal((int)HttpStatusCode.SeeOther, result.StatusCode);
 			var status = Assert.IsType<Status>(result.Value);
 			Assert.NotNull(status.Link);
 			Assert.Null(status.PingAfterDateTime);
