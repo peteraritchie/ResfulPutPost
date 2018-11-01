@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>ebe355e4-d758-4ef8-aeda-a9a484cf99a5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,8 +13,11 @@
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="2.1.1" />
     <PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" Version="1.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Polly" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>

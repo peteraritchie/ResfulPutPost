@@ -10,6 +10,64 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using WebAPI.Models;
 
+
+// link elements contain the url (href), the relation (rel) and the type [https://tools.ietf.org/html/rfc4287#section-4.2.7]
+// links as a single link object or array of link object [https://groups.google.com/d/msg/api-craft/i6gJNsIGLG4/m41dL-b5ZX4J]
+// "Another thing which will help you while building RESTful APIs is that query based
+//	API results should be represented by a list of links with summary information, not 
+//	by arrays of original resource representations because query is not a substitute for 
+//	identification of resources." https://restfulapi.net/
+
+/*
+ collection response:
+{
+	"_links": {
+		"self": {"href": "/products"},
+		"first": {"href": "/products"},
+		"next": {"href": "/products?page=1"},
+		"last": {"href": "/products?page=99"}
+	  }
+	},
+	"_embedded": {
+		"products" : [ // resource objects
+		{
+			"_links": {
+				"self": {"href": "/products/1"},
+			},
+			"name" : "product 1",
+			"price" : "10.99",
+		},
+		{
+			"_links": {
+				"self": {"href": "/products/2"},
+			},
+			"name" : "product 2",
+			"price" : "99.99",
+		}
+		]
+	},
+	"count": 2,
+	"total": 199
+}
+ */
+
+/*
+ * all responses are a Resource Object that may have reserved properties :_links, _embededed.  All other root properties should represent the current state of the resource
+ * https://tools.ietf.org/html/draft-kelly-json-hal-08#section-4
+ */
+/*
+ * Link Object
+ * "href": required
+ * "templated": optional
+ * "type": optional
+ * "deprecation": optional
+ * "name": optional
+ * "profile": optional
+ * "hreflang": optional
+ * https://tools.ietf.org/html/draft-kelly-json-hal-08#section-5
+ */
+// https://www.iana.org/assignments/link-relations/link-relations.xhtml RE: "rel"
+
 namespace WebAPI.Controllers
 {
 	/// <summary>
@@ -35,7 +93,8 @@ namespace WebAPI.Controllers
 		[HttpGet(Name = "GetProducts")]
 		public IActionResult Get()
 		{
-			return Ok(productCatalog.Products.Select(product => product.MapTo<Product>()));
+			var productCatalogProducts = productCatalog.Products ?? new Domain.Primitivies.Product[0];
+			return Ok(productCatalogProducts.Select(product => product.MapTo<Product>()));
 		}
 
 		/// <summary>
