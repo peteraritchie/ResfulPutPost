@@ -15,6 +15,7 @@ using Product = Domain.Primitivies.Product;
 
 namespace Tests
 {
+
 	public class ProductsControllerTests
 	{
 		[Fact/*[RFC2616.10.2.1]*/]
@@ -229,7 +230,7 @@ namespace Tests
 
 #if PUT_CREATE_SUPPORTED
 		// race condition (InvalidOperationException, NoContent);
-		[Fact/*[RFC2616.9.5]*/]
+		[Fact/*[RFC2616.9.6]*/]
 		public void PutCreateInvalidOperationResultsInNoContent()
 		{
 			var mock = new Mock<IProductCatalog>();
